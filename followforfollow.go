@@ -174,7 +174,7 @@ func main() {
 	}
 
 	// unfollow
-	exempt_users_array := []string{"academind", "angelabauer", "mschwarzmueller"}
+	exempt_users_array := []string{"BenjaminX", "academind", "angelabauer", "mschwarzmueller"}
 	for _, unfollow := range unfollow_array {
 		exempted := slices.Contains(exempt_users_array, unfollow)
 		if exempted {
