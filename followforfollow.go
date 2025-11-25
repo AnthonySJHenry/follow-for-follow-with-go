@@ -29,16 +29,16 @@ type GitHubClient struct {
 	token string
 }
 
-func (c *GitHubClient) fetch_user_list(url string) ([]string, error) {
+func (GH_client *GitHubClient) fetch_user_list(url string) ([]string, error) {
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	req.Header.Set("Authorization", fmt.Sprintf("token %s", c.token))
+	req.Header.Set("Authorization", fmt.Sprintf("token %s", GH_client.token))
 	req.Header.Set("Accept", "application/json")
 
-	resp, err := c.http.Do(req)
+	resp, err := GH_client.http.Do(req)
 	if err != nil {
 		return nil, err
 	}
@@ -62,15 +62,15 @@ func (c *GitHubClient) fetch_user_list(url string) ([]string, error) {
 	return users_array, nil
 }
 
-func (c *GitHubClient) follow_user(username string) error {
+func (GH_client *GitHubClient) follow_user(username string) error {
 	follow_req, follow_req_err := http.NewRequest("PUT", "https://api.github.com/user/following/"+username, nil)
 	if follow_req_err != nil {
 		return follow_req_err
 	}
 	follow_req.Header.Set("Content-Type", "application/json")
-	follow_req.Header.Set("Authorization", fmt.Sprintf("token %s", c.token))
+	follow_req.Header.Set("Authorization", fmt.Sprintf("token %s", GH_client.token))
 
-	follow_resp, follow_resp_err := c.http.Do(follow_req)
+	follow_resp, follow_resp_err := GH_client.http.Do(follow_req)
 	if follow_resp_err != nil {
 		return follow_resp_err
 	}
@@ -84,15 +84,15 @@ func (c *GitHubClient) follow_user(username string) error {
 	return nil
 }
 
-func (c *GitHubClient) unfollow_user(username string) error {
+func (GH_client *GitHubClient) unfollow_user(username string) error {
 	unfollow_req, unfollow_req_err := http.NewRequest("DELETE", "https://api.github.com/user/following/"+username, nil)
 	if unfollow_req_err != nil {
 		return unfollow_req_err
 	}
 	unfollow_req.Header.Set("Content-Type", "application/json")
-	unfollow_req.Header.Set("Authorization", fmt.Sprintf("token %s", c.token))
+	unfollow_req.Header.Set("Authorization", fmt.Sprintf("token %s", GH_client.token))
 
-	unfollow_resp, unfollow_resp_err := c.http.Do(unfollow_req)
+	unfollow_resp, unfollow_resp_err := GH_client.http.Do(unfollow_req)
 	if unfollow_resp_err != nil {
 		return unfollow_resp_err
 	}
