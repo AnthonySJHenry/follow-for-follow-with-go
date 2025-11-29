@@ -4,13 +4,7 @@ on:
     branches:
       - main
   schedule:
-<<<<<<< HEAD
-    - cron: "* 4 * * *"
-||||||| parent of dfc659f (Change cron schedule from 15 to 20 minutes)
-    - cron: "15 * * * *"
-=======
-    - cron: "20 * * * *"
->>>>>>> dfc659f (Change cron schedule from 15 to 20 minutes)
+    - cron: "* 1 * * *"
   workflow_dispatch:
 jobs:
   run:
@@ -23,3 +17,4 @@ jobs:
       - run: go run followforfollow.go
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
+          GL_PAT: ${{ secrets.GL_PAT }}
