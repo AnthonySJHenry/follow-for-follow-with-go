@@ -4,7 +4,13 @@ on:
     branches:
       - main
   schedule:
+<<<<<<< HEAD
     - cron: "* 4 * * *"
+||||||| parent of dfc659f (Change cron schedule from 15 to 20 minutes)
+    - cron: "15 * * * *"
+=======
+    - cron: "20 * * * *"
+>>>>>>> dfc659f (Change cron schedule from 15 to 20 minutes)
   workflow_dispatch:
 jobs:
   run:
